@@ -1,21 +1,22 @@
 bootstrap-select
 ================
 
-A custom select / multiselect for Bootstrap using button dropdown, designed to behave like regular Bootstrap selects.
+A custom select/multiselect for Bootstrap using button dropdown, designed to behave like regular Bootstrap selects.
 
 ## Demo and Documentation
 
-See a Bootstrap 3 example [here](http://silviomoreto.github.io/bootstrap-select).
+See a Bootstrap 3 example [here](http://thdoan.github.io/bootstrap-select/demo.html) or [here](http://silviomoreto.github.io/bootstrap-select).
 
 ## Authors
 
-[Silvio Moreto](https://github.com/silviomoreto),
-[Ana Carolina](https://github.com/anacarolinats),
-[caseyjhol](https://github.com/caseyjhol),
-[Matt Bryson](https://github.com/mattbryson), and
-[t0xicCode](https://github.com/t0xicCode).
+- [Silvio Moreto](https://github.com/silviomoreto)
+- [Ana Carolina](https://github.com/anacarolinats)
+- [caseyjhol](https://github.com/caseyjhol)
+- [Matt Bryson](https://github.com/mattbryson)
+- [t0xicCode](https://github.com/t0xicCode)
 
-## Modifications by thdoan
+## Modifications by [thdoan](https://github.com/thdoan)
+
 - Added option for custom caret icon class
 - Added option for thumbnails in `<option>`
 - Removed using `<option>` value as title (uses `<select>` title by default)
@@ -52,9 +53,9 @@ $('select.selectpicker').selectpicker({
 });
 ```
 
-Checkout the [documentation](http://silviomoreto.github.io/bootstrap-select) for further information.
+Check out the [documentation](http://silviomoreto.github.io/bootstrap-select) for further information.
 
-## Copyright and license
+## Copyright and License
 
 Copyright (C) 2013-2015 bootstrap-select
 
