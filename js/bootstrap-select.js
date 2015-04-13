@@ -5,42 +5,41 @@
   if (!String.prototype.includes) {
     (function () {
       'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
-      var toString = {}.toString;
-      var defineProperty = (function () {
-        // IE 8 only supports `Object.defineProperty` on DOM elements
-        try {
-          var object = {};
-          var $defineProperty = Object.defineProperty;
-          var result = $defineProperty(object, object, object) && $defineProperty;
-        } catch (error) {
-        }
-        return result;
-      }());
-      var indexOf = ''.indexOf;
-      var includes = function (search) {
-        if (this == null) {
-          throw TypeError();
-        }
-        var string = String(this);
-        if (search && toString.call(search) == '[object RegExp]') {
-          throw TypeError();
-        }
-        var stringLength = string.length;
-        var searchString = String(search);
-        var searchLength = searchString.length;
-        var position = arguments.length > 1 ? arguments[1] : undefined;
-        // `ToInteger`
-        var pos = position ? Number(position) : 0;
-        if (pos != pos) { // better `isNaN`
-          pos = 0;
-        }
-        var start = Math.min(Math.max(pos, 0), stringLength);
-        // Avoid the `indexOf` call if no match is possible
-        if (searchLength + start > stringLength) {
-          return false;
-        }
-        return indexOf.call(string, searchString, pos) != -1;
-      };
+      var toString = {}.toString,
+          defineProperty = (function () {
+            // IE 8 only supports `Object.defineProperty` on DOM elements
+            try {
+              var object = {},
+                  $defineProperty = Object.defineProperty,
+                  result = $defineProperty(object, object, object) && $defineProperty;
+            } catch (error) {}
+            return result;
+          }());
+      var indexOf = ''.indexOf,
+          includes = function (search) {
+            if (this === null) {
+              throw TypeError();
+            }
+            var string = String(this);
+            if (search && toString.call(search) === '[object RegExp]') {
+              throw TypeError();
+            }
+            var stringLength = string.length,
+                searchString = String(search),
+                searchLength = searchString.length,
+                position = arguments.length > 1 ? arguments[1] : undefined;
+            // `ToInteger`
+            var pos = position ? Number(position) : 0;
+            if (pos !== pos) { // better `isNaN`
+              pos = 0;
+            }
+            var start = Math.min(Math.max(pos, 0), stringLength);
+            // Avoid the `indexOf` call if no match is possible
+            if (searchLength + start > stringLength) {
+              return false;
+            }
+            return indexOf.call(string, searchString, pos) !== -1;
+          };
       if (defineProperty) {
         defineProperty(String.prototype, 'includes', {
           'value': includes,
@@ -59,44 +58,43 @@
       var defineProperty = (function () {
         // IE 8 only supports `Object.defineProperty` on DOM elements
         try {
-          var object = {};
-          var $defineProperty = Object.defineProperty;
-          var result = $defineProperty(object, object, object) && $defineProperty;
-        } catch (error) {
-        }
+          var object = {},
+              $defineProperty = Object.defineProperty,
+              result = $defineProperty(object, object, object) && $defineProperty;
+        } catch (error) {}
         return result;
       }());
-      var toString = {}.toString;
-      var startsWith = function (search) {
-        if (this == null) {
-          throw TypeError();
-        }
-        var string = String(this);
-        if (search && toString.call(search) == '[object RegExp]') {
-          throw TypeError();
-        }
-        var stringLength = string.length;
-        var searchString = String(search);
-        var searchLength = searchString.length;
-        var position = arguments.length > 1 ? arguments[1] : undefined;
-        // `ToInteger`
-        var pos = position ? Number(position) : 0;
-        if (pos != pos) { // better `isNaN`
-          pos = 0;
-        }
-        var start = Math.min(Math.max(pos, 0), stringLength);
-        // Avoid the `indexOf` call if no match is possible
-        if (searchLength + start > stringLength) {
-          return false;
-        }
-        var index = -1;
-        while (++index < searchLength) {
-          if (string.charCodeAt(start + index) != searchString.charCodeAt(index)) {
-            return false;
-          }
-        }
-        return true;
-      };
+      var toString = {}.toString,
+          startsWith = function (search) {
+            if (this === null) {
+              throw TypeError();
+            }
+            var string = String(this);
+            if (search && toString.call(search) === '[object RegExp]') {
+              throw TypeError();
+            }
+            var stringLength = string.length,
+                searchString = String(search),
+                searchLength = searchString.length,
+                position = arguments.length > 1 ? arguments[1] : undefined;
+            // `ToInteger`
+            var pos = position ? Number(position) : 0;
+            if (pos !== pos) { // better `isNaN`
+              pos = 0;
+            }
+            var start = Math.min(Math.max(pos, 0), stringLength);
+            // Avoid the `indexOf` call if no match is possible
+            if (searchLength + start > stringLength) {
+              return false;
+            }
+            var index = -1;
+            while (++index < searchLength) {
+              if (string.charCodeAt(start + index) !== searchString.charCodeAt(index)) {
+                return false;
+              }
+            }
+            return true;
+          };
       if (defineProperty) {
         defineProperty(String.prototype, 'startsWith', {
           'value': startsWith,
@@ -112,29 +110,29 @@
 
   // Case insensitive contains search
   $.expr[':'].icontains = function (obj, index, meta) {
-    var $obj = $(obj);
-    var haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
+    var $obj = $(obj),
+        haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
     return haystack.includes(meta[3].toUpperCase());
   };
 
   // Case insensitive begins search
   $.expr[':'].ibegins = function (obj, index, meta) {
-    var $obj = $(obj);
-    var haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
+    var $obj = $(obj),
+        haystack = ($obj.data('tokens') || $obj.text()).toUpperCase();
     return haystack.startsWith(meta[3].toUpperCase());
   };
 
   // Case and accent insensitive contains search
   $.expr[':'].aicontains = function (obj, index, meta) {
-    var $obj = $(obj);
-    var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
+    var $obj = $(obj),
+        haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
     return haystack.includes(haystack, meta[3]);
   };
 
   // Case and accent insensitive begins search
   $.expr[':'].aibegins = function (obj, index, meta) {
-    var $obj = $(obj);
-    var haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
+    var $obj = $(obj),
+        haystack = ($obj.data('tokens') || $obj.data('normalizedText') || $obj.text()).toUpperCase();
     return haystack.startsWith(meta[3].toUpperCase());
   };
 
@@ -146,19 +144,19 @@
    */
   function normalizeToBase(text) {
     var rExps = [
-      {re: /[\xC0-\xC6]/g, ch: "A"},
-      {re: /[\xE0-\xE6]/g, ch: "a"},
-      {re: /[\xC8-\xCB]/g, ch: "E"},
-      {re: /[\xE8-\xEB]/g, ch: "e"},
-      {re: /[\xCC-\xCF]/g, ch: "I"},
-      {re: /[\xEC-\xEF]/g, ch: "i"},
-      {re: /[\xD2-\xD6]/g, ch: "O"},
-      {re: /[\xF2-\xF6]/g, ch: "o"},
-      {re: /[\xD9-\xDC]/g, ch: "U"},
-      {re: /[\xF9-\xFC]/g, ch: "u"},
-      {re: /[\xC7-\xE7]/g, ch: "c"},
-      {re: /[\xD1]/g, ch: "N"},
-      {re: /[\xF1]/g, ch: "n"}
+      {re: /[\xC0-\xC6]/g, ch: 'A'},
+      {re: /[\xE0-\xE6]/g, ch: 'a'},
+      {re: /[\xC8-\xCB]/g, ch: 'E'},
+      {re: /[\xE8-\xEB]/g, ch: 'e'},
+      {re: /[\xCC-\xCF]/g, ch: 'I'},
+      {re: /[\xEC-\xEF]/g, ch: 'i'},
+      {re: /[\xD2-\xD6]/g, ch: 'O'},
+      {re: /[\xF2-\xF6]/g, ch: 'o'},
+      {re: /[\xD9-\xDC]/g, ch: 'U'},
+      {re: /[\xF9-\xFC]/g, ch: 'u'},
+      {re: /[\xC7-\xE7]/g, ch: 'c'},
+      {re: /[\xD1]/g, ch: 'N'},
+      {re: /[\xF1]/g, ch: 'n'}
     ];
     $.each(rExps, function () {
       text = text.replace(this.re, this.ch);
@@ -179,7 +177,7 @@
     var source = '(?:' + Object.keys(escapeMap).join('|') + ')',
         testRegexp = new RegExp(source),
         replaceRegexp = new RegExp(source, 'g'),
-        string = html == null ? '' : '' + html;
+        string = html === null ? '' : '' + html;
     return testRegexp.test(string) ? string.replace(replaceRegexp, function (match) {
       return escapeMap[match];
     }) : string;
@@ -226,12 +224,12 @@
     noneSelectedText: 'Nothing selected',
     noneResultsText: 'No results matched {0}',
     countSelectedText: function (numSelected, numTotal) {
-      return (numSelected == 1) ? "{0} item selected" : "{0} items selected";
+      return (numSelected === 1) ? "{0} item selected" : "{0} items selected";
     },
     maxOptionsText: function (numAll, numGroup) {
       return [
-        (numAll == 1) ? 'Limit reached ({n} item max)' : 'Limit reached ({n} items max)',
-        (numGroup == 1) ? 'Group limit reached ({n} item max)' : 'Group limit reached ({n} items max)'
+        (numAll === 1) ? 'Limit reached ({n} item max)' : 'Limit reached ({n} items max)',
+        (numGroup === 1) ? 'Group limit reached ({n} item max)' : 'Group limit reached ({n} items max)'
       ];
     },
     selectAllText: 'Select All',
@@ -312,56 +310,48 @@
           inputGroup = this.$element.parent().hasClass('input-group') ? ' input-group-btn' : '',
           autofocus = this.autofocus ? ' autofocus' : '';
       // Elements
-      var header = this.options.header ? '<div class="popover-title"><button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header + '</div>' : '';
-      var searchbox = this.options.liveSearch ?
-      '<div class="bs-searchbox">' +
-      '<input type="text" class="form-control" autocomplete="off"' +
-      (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
-      '</div>'
-          : '';
-      var actionsbox = this.multiple && this.options.actionsBox ?
-      '<div class="bs-actionsbox">' +
-      '<div class="btn-group btn-group-sm btn-block">' +
-      '<button class="actions-btn bs-select-all btn btn-default">' +
-      this.options.selectAllText +
-      '</button>' +
-      '<button class="actions-btn bs-deselect-all btn btn-default">' +
-      this.options.deselectAllText +
-      '</button>' +
-      '</div>' +
-      '</div>'
-          : '';
-      var donebutton = this.multiple && this.options.doneButton ?
-      '<div class="bs-donebutton">' +
-      '<div class="btn-group btn-block">' +
-      '<button class="btn btn-sm btn-default">' +
-      this.options.doneButtonText +
-      '</button>' +
-      '</div>' +
-      '</div>'
-          : '';
-      var drop =
-          '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
-          '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
-          '<span class="filter-option pull-left"></span>&nbsp;' +
-          '<span class="caret"></span>' +
-          '</button>' +
-          '<div class="dropdown-menu open">' +
-          header +
-          searchbox +
-          actionsbox +
-          '<ul class="dropdown-menu inner" role="menu">' +
-          '</ul>' +
-          donebutton +
-          '</div>' +
-          '</div>';
+      var header = this.options.header ?
+            '<div class="popover-title">' +
+              '<button type="button" class="close" aria-hidden="true">&times;</button>' + this.options.header +
+            '</div>' : '',
+          searchbox = this.options.liveSearch ?
+            '<div class="bs-searchbox">' +
+              '<input type="text" class="form-control" autocomplete="off"' + (null === this.options.liveSearchPlaceholder ? '' : ' placeholder="' + htmlEscape(this.options.liveSearchPlaceholder) + '"') + '>' +
+            '</div>' : '',
+          actionsbox = this.multiple && this.options.actionsBox ?
+            '<div class="bs-actionsbox">' +
+              '<div class="btn-group btn-group-sm btn-block">' +
+                '<button class="actions-btn bs-select-all btn btn-default">' + this.options.selectAllText + '</button>' +
+                '<button class="actions-btn bs-deselect-all btn btn-default">' + this.options.deselectAllText + '</button>' +
+              '</div>' +
+            '</div>' : '',
+          donebutton = this.multiple && this.options.doneButton ?
+            '<div class="bs-donebutton">' +
+              '<div class="btn-group btn-block">' +
+                '<button class="btn btn-sm btn-default">' + this.options.doneButtonText + '</button>' +
+              '</div>' +
+            '</div>' : '',
+          drop =
+            '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
+              '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
+                '<span class="filter-option pull-left"></span>&nbsp;' +
+                '<span class="caret"></span>' +
+              '</button>' +
+              '<div class="dropdown-menu open">' +
+                header +
+                searchbox +
+                actionsbox +
+                '<ul class="dropdown-menu inner" role="menu"></ul>' +
+                donebutton +
+              '</div>' +
+            '</div>';
 
       return $(drop);
     },
 
     createView: function () {
-      var $drop = this.createDropdown();
-      var $li = this.createLi();
+      var $drop = this.createDropdown(),
+          $li = this.createLi();
       $drop.find('ul').append($li);
       return $drop;
     },
@@ -446,9 +436,9 @@
             optID += 1;
 
             // Get the opt group label
-            var label = $this.parent().attr('label');
-            var labelSubtext = typeof $this.parent().data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.parent().data('subtext') + '</small>' : '';
-            var labelIcon = $this.parent().data('icon') ? '<span class="' + that.options.iconBase + ' ' + $this.parent().data('icon') + '"></span> ' : '';
+            var label = $this.parent().attr('label'),
+                labelSubtext = typeof $this.parent().data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.parent().data('subtext') + '</small>' : '',
+                labelIcon = $this.parent().data('icon') ? '<span class="' + that.options.iconBase + ' ' + $this.parent().data('icon') + '"></span> ' : '';
             label = labelIcon + '<span class="text">' + label + labelSubtext + '</span>';
 
             if (index !== 0 && _li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
@@ -478,7 +468,7 @@
     },
 
     findLis: function () {
-      if (this.$lis == null) this.$lis = this.$menu.find('li');
+      if (this.$lis === null) this.$lis = this.$menu.find('li');
       return this.$lis;
     },
 
@@ -497,24 +487,24 @@
       }
 
       this.tabIndex();
-      var notDisabled = this.options.hideDisabled ? ':enabled' : '';
-      var selectedItems = this.$element.find('option:selected' + notDisabled).map(function () {
-        var $this = $(this);
-        var icon = $this.data('icon') && that.options.showIcon ? '<i class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></i> ' : '';
-        var subtext;
-        if (that.options.showSubtext && $this.data('subtext') && !that.multiple) {
-          subtext = ' <small class="text-muted">' + $this.data('subtext') + '</small>';
-        } else {
-          subtext = '';
-        }
-        if (typeof $this.attr('title') !== 'undefined') {
-          return $this.attr('title');
-        } else if ($this.data('content') && that.options.showContent) {
-          return $this.data('content');
-        } else {
-          return icon + $this.html() + subtext;
-        }
-      }).toArray();
+      var notDisabled = this.options.hideDisabled ? ':enabled' : '',
+          selectedItems = this.$element.find('option:selected' + notDisabled).map(function () {
+            var $this = $(this),
+                icon = $this.data('icon') && that.options.showIcon ? '<i class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></i> ' : '',
+                subtext;
+            if (that.options.showSubtext && $this.data('subtext') && !that.multiple) {
+              subtext = ' <small class="text-muted">' + $this.data('subtext') + '</small>';
+            } else {
+              subtext = '';
+            }
+            if (typeof $this.attr('title') !== 'undefined') {
+              return $this.attr('title');
+            } else if ($this.data('content') && that.options.showContent) {
+              return $this.data('content');
+            } else {
+              return icon + $this.html() + subtext;
+            }
+          }).toArray();
 
       //Fixes issue in IE10 occurring when no default option is selected and at least one option is disabled
       //Convert all the values into a comma delimited string
@@ -523,7 +513,7 @@
       //If this is multi select, and the selectText type is count, the show 1 of 2 selected etc..
       if (this.multiple && this.options.selectedTextFormat.indexOf('count') > -1) {
         var max = this.options.selectedTextFormat.split('>');
-        if ((max.length > 1 && selectedItems.length > max[1]) || (max.length == 1 && selectedItems.length >= 2)) {
+        if ((max.length > 1 && selectedItems.length > max[1]) || (max.length === 1 && selectedItems.length >= 2)) {
           notDisabled = this.options.hideDisabled ? ', [disabled]' : '';
           var totalCount = this.$element.find('option').not('[data-divider="true"], [data-hidden="true"]' + notDisabled).length,
               tr8nText = (typeof this.options.countSelectedText === 'function') ? this.options.countSelectedText(selectedItems.length, totalCount) : this.options.countSelectedText;
@@ -531,11 +521,11 @@
         }
       }
 
-      if (this.options.title == undefined) {
+      if (this.options.title === undefined) {
         this.options.title = this.$element.attr('title');
       }
 
-      if (this.options.selectedTextFormat == 'static') {
+      if (this.options.selectedTextFormat === 'static') {
         title = this.options.title;
       }
 
@@ -560,9 +550,9 @@
 
       var buttonClass = style ? style : this.options.style;
 
-      if (status == 'add') {
+      if (status === 'add') {
         this.$button.addClass(buttonClass);
-      } else if (status == 'remove') {
+      } else if (status === 'remove') {
         this.$button.removeClass(buttonClass);
       } else {
         this.$button.removeClass(this.options.style);
@@ -622,7 +612,7 @@
       posVert();
       if (this.options.header) $menu.css('padding-top', 0);
 
-      if (this.options.size == 'auto') {
+      if (this.options.size === 'auto') {
         var getSize = function () {
           var minHeight,
               lisVis = that.$lis.not('.hidden');
@@ -657,9 +647,9 @@
         getSize();
         this.$searchbox.off('input.getSize propertychange.getSize').on('input.getSize propertychange.getSize', getSize);
         $window.off('resize.getSize scroll.getSize').on('resize.getSize scroll.getSize', getSize);
-      } else if (this.options.size && this.options.size != 'auto' && $menu.find('li').not(notDisabled).length > this.options.size) {
-        var optIndex = this.$lis.not('.divider').not(notDisabled).children().slice(0, this.options.size).last().parent().index();
-        var divLength = this.$lis.slice(0, optIndex + 1).filter('.divider').length;
+      } else if (this.options.size && this.options.size !== 'auto' && $menu.find('li').not(notDisabled).length > this.options.size) {
+        var optIndex = this.$lis.not('.divider').not(notDisabled).children().slice(0, this.options.size).last().parent().index(),
+            divLength = this.$lis.slice(0, optIndex + 1).filter('.divider').length;
         menuHeight = liHeight * this.options.size + divLength * divHeight + menuPadding;
         if (that.options.dropupAuto) {
           //noinspection JSUnusedAssignment
@@ -677,18 +667,18 @@
     },
 
     setWidth: function () {
-      if (this.options.width == 'auto') {
+      if (this.options.width === 'auto') {
         this.$menu.css('min-width', '0');
 
         // Get correct width if element hidden
-        var selectClone = this.$newElement.clone().appendTo('body');
-        var ulWidth = selectClone.children('.dropdown-menu').css('width');
-        var btnWidth = selectClone.css('width', 'auto').children('button').css('width');
+        var selectClone = this.$newElement.clone().appendTo('body'),
+            ulWidth = selectClone.children('.dropdown-menu').css('width'),
+            btnWidth = selectClone.css('width', 'auto').children('button').css('width');
         selectClone.remove();
 
         // Set width to whatever's larger, button title or longest option
         this.$newElement.css('width', Math.max(parseInt(ulWidth), parseInt(btnWidth)) + 'px');
-      } else if (this.options.width == 'fit') {
+      } else if (this.options.width === 'fit') {
         // Remove inline min-width so width can be changed from 'auto'
         this.$menu.css('min-width', '');
         this.$newElement.css('width', '').addClass('fit-width');
@@ -771,7 +761,7 @@
           this.$button.removeClass('disabled');
         }
 
-        if (this.$button.attr('tabindex') == -1 && !this.$element.data('tabindex')) {
+        if (this.$button.attr('tabindex') === -1 && !this.$element.data('tabindex')) {
           this.$button.removeAttr('tabindex');
         }
       }
@@ -841,12 +831,12 @@
                   maxReachedGrp = maxOptionsGrp < $optgroup.find('option:selected').length;
 
               if ((maxOptions && maxReached) || (maxOptionsGrp && maxReachedGrp)) {
-                if (maxOptions && maxOptions == 1) {
+                if (maxOptions && maxOptions === 1) {
                   $options.prop('selected', false);
                   $option.prop('selected', true);
                   that.$menu.find('.selected').removeClass('selected');
                   that.setSelected(clickedIndex, true);
-                } else if (maxOptionsGrp && maxOptionsGrp == 1) {
+                } else if (maxOptionsGrp && maxOptionsGrp === 1) {
                   $optgroup.find('option:selected').prop('selected', false);
                   $option.prop('selected', true);
                   var optgroupID = $this.data('optgroup');
@@ -855,8 +845,7 @@
 
                   that.setSelected(clickedIndex, true);
                 } else {
-                  var maxOptionsArr = (typeof that.options.maxOptionsText === 'function') ?
-                          that.options.maxOptionsText(maxOptions, maxOptionsGrp) : that.options.maxOptionsText,
+                  var maxOptionsArr = (typeof that.options.maxOptionsText === 'function') ? that.options.maxOptionsText(maxOptions, maxOptionsGrp) : that.options.maxOptionsText,
                       maxTxt = maxOptionsArr[0].replace('{n}', maxOptions),
                       maxTxtGrp = maxOptionsArr[1].replace('{n}', maxOptionsGrp),
                       $notify = $('<div class="notify"></div>');
@@ -900,14 +889,14 @@
           }
 
           // Trigger select 'change'
-          if ((prevValue != that.$element.val() && that.multiple) || (prevIndex != that.$element.prop('selectedIndex') && !that.multiple)) {
+          if ((prevValue !== that.$element.val() && that.multiple) || (prevIndex !== that.$element.prop('selectedIndex') && !that.multiple)) {
             that.$element.change();
           }
         }
       });
 
       this.$menu.on('click', 'li.disabled a, .popover-title, .popover-title :not(.close)', function (e) {
-        if (e.currentTarget == this) {
+        if (e.currentTarget === this) {
           e.preventDefault();
           e.stopPropagation();
           if (that.options.liveSearch) {
@@ -1041,12 +1030,14 @@
       var style = 'icontains';
       switch (this.options.liveSearchStyle) {
         case 'begins':
+          break;
         case 'startsWith':
           style = 'ibegins';
           break;
         case 'contains':
+          break;
         default:
-          break; //no need to change the default
+          //no need to change the default
       }
 
       return style;
@@ -1205,17 +1196,17 @@
 
         prevIndex = $this.data('prevIndex');
 
-        if (e.keyCode == 38) {
+        if (e.keyCode === 38) {
           if (that.options.liveSearch) index -= 1;
-          if (index != nextPrev && index > prev) index = prev;
+          if (index !== nextPrev && index > prev) index = prev;
           if (index < first) index = first;
-          if (index == prevIndex) index = last;
-        } else if (e.keyCode == 40) {
+          if (index === prevIndex) index = last;
+        } else if (e.keyCode === 40) {
           if (that.options.liveSearch) index += 1;
-          if (index == -1) index = 0;
-          if (index != nextPrev && index < next) index = next;
+          if (index === -1) index = 0;
+          if (index !== nextPrev && index < next) index = next;
           if (index > last) index = last;
-          if (index == prevIndex) index = first;
+          if (index === prevIndex) index = first;
         }
 
         $this.data('prevIndex', index);
@@ -1238,7 +1229,7 @@
 
         $items.each(function () {
           if (!$(this).parent().hasClass('disabled')) {
-            if ($.trim($(this).text().toLowerCase()).substring(0, 1) == keyCodeMap[e.keyCode]) {
+            if ($.trim($(this).text().toLowerCase()).substring(0, 1) === keyCodeMap[e.keyCode]) {
               keyIndex.push($(this).parent().index());
             }
           }
@@ -1250,7 +1241,7 @@
 
         prevKey = $.trim($(':focus').text().toLowerCase()).substring(0, 1);
 
-        if (prevKey != keyCodeMap[e.keyCode]) {
+        if (prevKey !== keyCodeMap[e.keyCode]) {
           count = 1;
           $(document).data('keycount', count);
         } else if (count >= keyIndex.length) {
@@ -1324,33 +1315,33 @@
         _event = event;
     [].shift.apply(args);
 
-    var value;
-    var chain = this.each(function () {
-      var $this = $(this);
-      if ($this.is('select')) {
-        var data = $this.data('selectpicker'),
-            options = typeof _option == 'object' && _option;
+    var value,
+        chain = this.each(function () {
+          var $this = $(this);
+          if ($this.is('select')) {
+            var data = $this.data('selectpicker'),
+                options = typeof _option === 'object' && _option;
 
-        if (!data) {
-          var config = $.extend({}, Selectpicker.DEFAULTS, $.fn.selectpicker.defaults || {}, $this.data(), options);
-          $this.data('selectpicker', (data = new Selectpicker(this, config, _event)));
-        } else if (options) {
-          for (var i in options) {
-            if (options.hasOwnProperty(i)) {
-              data.options[i] = options[i];
+            if (!data) {
+              var config = $.extend({}, Selectpicker.DEFAULTS, $.fn.selectpicker.defaults || {}, $this.data(), options);
+              $this.data('selectpicker', (data = new Selectpicker(this, config, _event)));
+            } else if (options) {
+              for (var i in options) {
+                if (options.hasOwnProperty(i)) {
+                  data.options[i] = options[i];
+                }
+              }
+            }
+
+            if (typeof _option === 'string') {
+              if (data[_option] instanceof Function) {
+                value = data[_option].apply(data, args);
+              } else {
+                value = data.options[_option];
+              }
             }
           }
-        }
-
-        if (typeof _option == 'string') {
-          if (data[_option] instanceof Function) {
-            value = data[_option].apply(data, args);
-          } else {
-            value = data.options[_option];
-          }
-        }
-      }
-    });
+        });
 
     if (typeof value !== 'undefined') {
       //noinspection JSUnusedAssignment
