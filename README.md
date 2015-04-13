@@ -5,7 +5,7 @@ A custom select/multiselect for Bootstrap using button dropdown, designed to beh
 
 ## Demo and Documentation
 
-See a Bootstrap 3 example [here](http://thdoan.github.io/bootstrap-select/demo.html) or [here](http://silviomoreto.github.io/bootstrap-select).
+See Bootstrap 3 examples [here](http://thdoan.github.io/bootstrap-select/examples.html) and [here](http://silviomoreto.github.io/bootstrap-select).
 
 ## Authors
 
@@ -19,7 +19,14 @@ See a Bootstrap 3 example [here](http://thdoan.github.io/bootstrap-select/demo.h
 
 - Added option for custom caret icon class
 - Added option for thumbnails in `<option>`
+- Added aria-hidden="true" for all icons
+- Changed cursor for optgroup headers to 'default'
+- Suppressed checkmark element if not multi-select
+- Decoupled iconBase class so you can mix and match
 - Removed using `<option>` value as title (uses `<select>` title by default)
+- Removed showContent option (add data attribute to show)
+- Removed showIcon option (add data attribute to show)
+- Removed showSubtext option (add data attribute to show)
 - Minor code optimizations
 
 ## Usage
