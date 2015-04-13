@@ -196,7 +196,7 @@
     this.$lis = null;
     this.options = options;
 
-    // If we have no title yet, try to pull it from the html title attribute
+    // If we have no title yet, try to pull it from the HTML title attribute
     // (jQuery doesn't pick it up as it's not a data-attribute)
     if (this.options.title === null) {
       this.options.title = this.$element.attr('title');
@@ -523,22 +523,14 @@
         }
       }
 
-      if (this.options.title === undefined) {
-        this.options.title = this.$element.attr('title');
-      }
-
-      if (this.options.selectedTextFormat === 'static') {
-        title = this.options.title;
-      }
-
       // If we dont have a title, then use the default; or if nothing is set at all, use the not selected text
       if (!title) {
         title = typeof this.options.title !== 'undefined' ? this.options.title : this.options.noneSelectedText;
       }
 
       // Strip all HTML tags and trim the result
-      this.$button.attr('title', $.trim(title.replace(/<[^>]*>?/g, '')));
-      this.$button.children('.filter-option').html(title);
+      this.$button.children('.filter-option').text((!this.multiple || this.options.selectedTextFormat === 'values') ? title : this.options.title);
+      this.$button.attr('title', this.options.title);
     },
 
     /**
@@ -818,7 +810,7 @@
               maxOptions = that.options.maxOptions,
               maxOptionsGrp = $optgroup.data('maxOptions') || false;
 
-          if (!that.multiple) { // Deselect all others if not multi-select box
+         if (!that.multiple) { // Deselect all others if not multi-select box
             $options.prop('selected', false);
             $option.prop('selected', true);
             that.$menu.find('.selected').removeClass('selected');
