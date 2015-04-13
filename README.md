@@ -23,7 +23,7 @@ See Bootstrap 3 examples [here](http://thdoan.github.io/bootstrap-select/example
 - Changed cursor for optgroup headers to 'default'
 - Suppressed checkmark element if not multi-select
 - Decoupled iconBase class so you can mix and match
-- Removed using `<option>` value as title (uses `<select>` title by default)
+- Removed using `<option>` value as title (uses `<select>` title)
 - Removed showContent option (add data attribute to show)
 - Removed showIcon option (add data attribute to show)
 - Removed showSubtext option (add data attribute to show)
