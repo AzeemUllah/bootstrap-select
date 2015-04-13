@@ -104,6 +104,9 @@
 .bootstrap-select.btn-group .dropdown-menu li {
   position: relative;
 }
+.bootstrap-select.btn-group .dropdown-menu li.dropdown-header {
+  cursor: default;
+}
 .bootstrap-select.btn-group .dropdown-menu li.active small {
   color: #fff;
 }
@@ -123,13 +126,11 @@
 .bootstrap-select.btn-group .dropdown-menu li a span.text {
   display: inline-block;
 }
-.bootstrap-select.btn-group .dropdown-menu li a span.thumbnail {
-  display: inline-block;
-  margin-right: 4px;
-  vertical-align: middle;
-}
 .bootstrap-select.btn-group .dropdown-menu li small {
   padding-left: 0.5em;
+}
+.bootstrap-select.btn-group .dropdown-menu li .media-body {
+  vertical-align: middle;
 }
 .bootstrap-select.btn-group .dropdown-menu .notify {
   position: absolute;
