@@ -244,9 +244,6 @@
     width: false,
     container: false,
     hideDisabled: false,
-    showSubtext: false,
-    showIcon: true,
-    showContent: true,
     dropupAuto: true,
     header: false,
     liveSearch: false,
@@ -254,8 +251,7 @@
     liveSearchNormalize: false,
     liveSearchStyle: 'contains',
     actionsBox: false,
-    iconBase: 'glyphicon',
-    tickIcon: 'glyphicon-ok',
+    tickIcon: 'glyphicon glyphicon-ok',
     caretIcon: 'caret',
     maxOptions: false,
     mobile: false,
@@ -336,7 +332,7 @@
             '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
               '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
                 '<span class="filter-option pull-left"></span>&nbsp;' +
-                '<span class="' + this.options.caretIcon + '"></span>' +
+                '<span class="' + this.options.caretIcon + '" aria-hidden="true"></span>' +
               '</button>' +
               '<div class="dropdown-menu open">' +
                 header +
@@ -395,16 +391,17 @@
        * @param [classes]
        * @param [inline]
        * @param [tokens]
+       * @param [multiple]
        * @returns {string}
        */
-      var generateA = function (text, classes, inline, tokens) {
+      var generateA = function (text, classes, inline, tokens, multiple) {
         return '<a tabindex="0"' +
             (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
             (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
             ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' +
             (typeof tokens !== 'undefined' || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
             '>' + text +
-            '<span class="' + that.options.iconBase + ' ' + that.options.tickIcon + ' check-mark"></span>' +
+            (multiple ? '<span class="' + that.options.tickIcon + ' check-mark" aria-hidden="true"></span>' : '') +
             '</a>';
       };
 
@@ -417,7 +414,7 @@
             text = $this.data('content') ? $this.data('content') : $this.html(),
             tokens = $this.data('tokens') ? $this.data('tokens') : null,
             subtext = typeof $this.data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.data('subtext') + '</small>' : '',
-            icon = typeof $this.data('icon') !== 'undefined' ? '<span class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></span> ' : '',
+            icon = typeof $this.data('icon') !== 'undefined' ? '<span class="' + $this.data('icon') + '" aria-hidden="true"></span> ' : '',
             isDisabled = $this.is(':disabled') || $this.parent().is(':disabled');
         if (icon !== '' && isDisabled) {
           icon = '<span>' + icon + '</span>';
@@ -439,7 +436,7 @@
             // Get the opt group label
             var label = $this.parent().attr('label'),
                 labelSubtext = typeof $this.parent().data('subtext') !== 'undefined' ? '<small class="text-muted">' + $this.parent().data('subtext') + '</small>' : '',
-                labelIcon = $this.parent().data('icon') ? '<span class="' + that.options.iconBase + ' ' + $this.parent().data('icon') + '"></span> ' : '';
+                labelIcon = $this.parent().data('icon') ? '<span class="' + $this.parent().data('icon') + '" aria-hidden="true"></span> ' : '';
             label = labelIcon + '<span class="text">' + label + labelSubtext + '</span>';
 
             if (index !== 0 && _li.length > 0) { // Is it NOT the first option of the select && are there elements in the dropdown?
@@ -448,15 +445,14 @@
 
             _li.push(generateLI(label, null, 'dropdown-header', optID));
           }
-
-          _li.push(generateLI(generateA(text, 'opt ' + optionClass, inline, tokens), index, '', optID));
+          _li.push(generateLI(generateA(text, 'opt ' + optionClass, inline, tokens, that.multiple), index, '', optID));
         } else if ($this.data('divider') === true) {
           _li.push(generateLI('', index, 'divider'));
         } else if ($this.data('hidden') === true) {
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index, 'hidden is-hidden'));
+          _li.push(generateLI(generateA(text, optionClass, inline, tokens, that.multiple), index, 'hidden is-hidden'));
         } else {
           if ($this.prev().is('optgroup')) _li.push(generateLI('', null, 'divider', optID + 'div'));
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens), index));
+          _li.push(generateLI(generateA(text, optionClass, inline, tokens, that.multiple), index));
         }
       });
 
@@ -492,16 +488,16 @@
       var notDisabled = this.options.hideDisabled ? ':enabled' : '',
           selectedItems = this.$element.find('option:selected' + notDisabled).map(function () {
             var $this = $(this),
-                icon = $this.data('icon') && that.options.showIcon ? '<i class="' + that.options.iconBase + ' ' + $this.data('icon') + '"></i> ' : '',
+                icon = $this.data('icon') ? '<i class="' + $this.data('icon') + '" aria-hidden="true"></i> ' : '',
                 subtext;
-            if (that.options.showSubtext && $this.data('subtext') && !that.multiple) {
+            if ($this.data('subtext') && !that.multiple) {
               subtext = ' <small class="text-muted">' + $this.data('subtext') + '</small>';
             } else {
               subtext = '';
             }
             if (typeof $this.attr('title') !== 'undefined') {
               return $this.attr('title');
-            } else if ($this.data('content') && that.options.showContent) {
+            } else if ($this.data('content')) {
               return $this.data('content');
             } else {
               return icon + $this.html() + subtext;
@@ -529,7 +525,7 @@
       }
 
       // Strip all HTML tags and trim the result
-      this.$button.children('.filter-option').text((!this.multiple || this.options.selectedTextFormat === 'values') ? title : this.options.title);
+      this.$button.children('.filter-option').html((!this.multiple || this.options.selectedTextFormat === 'values') ? title : this.options.title);
       this.$button.attr('title', this.options.title);
     },
 

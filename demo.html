@@ -5,20 +5,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Bootstrap-select Demo</title>
 <meta name="author" content="Tom Doan">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.4/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="css/bootstrap-select.css">
 <style>
 body { margin:2em; }
-select.selectpicker { display:none; }
-.bootstrap-select.btn-group .dropdown-menu li.selected  { background:#ddd; }
+select.selectpicker { display:none; /* Prevent FOUC */}
 </style>
 </head>
 <body>
 
 <form>
 
-  <h2>Single select</h2>
+  <h2>Single Select</h2>
   <select title="Pick a number" class="selectpicker">
     <option>Select...</option>
     <option>One</option>
@@ -38,7 +37,7 @@ select.selectpicker { display:none; }
 
   <hr>
 
-  <h2>Multi-select</h2>
+  <h2>Multi-Select</h2>
   <select title="Colors" class="selectpicker" multiple>
     <option>Red</option>
     <option>Green</option>
@@ -54,16 +53,47 @@ select.selectpicker { display:none; }
     </code>
   </pre>
 
+  <hr>
+
+  <h2>Select with Icons</h2>
+  <select title="Select your class" class="selectpicker">
+    <option>Select...</option>
+    <option data-icon="fa fa-venus" data-subtext="high in wisdom">Female</option>
+    <option data-icon="fa fa-mars" data-subtext="high in strength">Male</option>
+  </select>
+  <pre>
+    <code>
+&lt;select title="Select your class" class="selectpicker"&gt;
+  &lt;option&gt;Select...&lt;/option&gt;
+  &lt;option data-icon="fa fa-venus" data-subtext="high in wisdom"&gt;Female&lt;/option&gt;
+  &lt;option data-icon="fa fa-mars" data-subtext="high in strength"&gt;Male&lt;/option&gt;
+&lt;/select&gt;
+    </code>
+  </pre>
+
+  <hr>
+
+  <h2>Select with Thumbnails</h2>
+  <select title="Select your surfboard" class="selectpicker">
+    <option>Select...</option>
+    <option data-thumbnail="images/icon-chrome.png" data-content="<span class='thumbnail'><img src='images/icon-chrome.png'> Chrome</span>">Chrome</option>
+    <option data-thumbnail="images/icon-firefox.png">Firefox</option>
+    <option data-thumbnail="images/icon-ie.png">IE</option>
+    <option data-thumbnail="images/icon-opera.png">Opera</option>
+    <option data-thumbnail="images/icon-safari.png">Safari</option>
+  </select>
+
 </form>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="js/bootstrap-select.js"></script>
 <script>
 $(document).ready(function() {
   // Initiate with custom caret icon
   $('select.selectpicker').selectpicker({
-    caretIcon: 'fa fa-angle-down'
+    caretIcon: 'fa fa-angle-down',
+    tickIcon: 'fa fa-check'
   });
 });
 </script>
