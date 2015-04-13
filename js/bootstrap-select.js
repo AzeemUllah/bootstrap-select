@@ -7,7 +7,7 @@
       'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
       var toString = {}.toString,
           defineProperty = (function () {
-            // IE 8 only supports `Object.defineProperty` on DOM elements
+            // IE8 only supports `Object.defineProperty` on DOM elements
             try {
               var object = {},
                   $defineProperty = Object.defineProperty,
@@ -56,7 +56,7 @@
     (function () {
       'use strict'; // needed to support `apply`/`call` with `undefined`/`null`
       var defineProperty = (function () {
-        // IE 8 only supports `Object.defineProperty` on DOM elements
+        // IE8 only supports `Object.defineProperty` on DOM elements
         try {
           var object = {},
               $defineProperty = Object.defineProperty,
@@ -196,13 +196,13 @@
     this.$lis = null;
     this.options = options;
 
-    // If we have no title yet, try to pull it from the html title attribute (jQuery doesnt' pick it up as it's not a
-    // data-attribute)
+    // If we have no title yet, try to pull it from the html title attribute
+    // (jQuery doesn't pick it up as it's not a data-attribute)
     if (this.options.title === null) {
       this.options.title = this.$element.attr('title');
     }
 
-    //Expose public methods
+    // Expose public methods
     this.val = Selectpicker.prototype.val;
     this.render = Selectpicker.prototype.render;
     this.refresh = Selectpicker.prototype.refresh;
@@ -219,7 +219,7 @@
 
   Selectpicker.VERSION = '1.6.4';
 
-  // part of this is duplicated in i18n/defaults-en_US.js. Make sure to update both.
+  // Part of this is duplicated in i18n/defaults-en_US.js (make sure to update both)
   Selectpicker.DEFAULTS = {
     noneSelectedText: 'Nothing selected',
     noneResultsText: 'No results matched {0}',
@@ -358,9 +358,9 @@
     },
 
     reloadLi: function () {
-      //Remove all children.
+      // Remove all children
       this.destroyLi();
-      //Re build
+      // Re-build
       var $li = this.createLi();
       this.$menu.find('ul').append($li);
     },
@@ -424,7 +424,7 @@
         }
 
         if (!$this.data('content')) {
-          // Prepend any icon and append any subtext to the main text.
+          // Prepend any icon and append any subtext to the main text
           text = icon + '<span class="text">' + text + subtext + '</span>';
         }
 
@@ -460,7 +460,8 @@
         }
       });
 
-      //If we are not multiple, we don't have a selected item, and we don't have a title, select the first element so something is set in the button
+      // If we are not multiple, we don't have a selected item, and we don't have
+      // a title, select the first element so something is set in the button
       if (!this.multiple && this.$element.find('option:selected').length === 0 && !this.options.title) {
         this.$element.find('option').eq(0).prop('selected', true).attr('selected', 'selected');
       }
@@ -479,7 +480,7 @@
     render: function (updateLi) {
       var that = this;
 
-      //Update the LI to match the SELECT
+      // Update the LI to match the SELECT
       if (updateLi !== false) {
         this.$element.find('option').each(function (index) {
           that.setDisabled(index, $(this).is(':disabled') || $(this).parent().is(':disabled'));
@@ -507,11 +508,11 @@
             }
           }).toArray();
 
-      //Fixes issue in IE10 occurring when no default option is selected and at least one option is disabled
-      //Convert all the values into a comma delimited string
+      // Fixes issue in IE10 occurring when no default option is selected and at least one option is disabled
+      // Convert all the values into a comma delimited string
       var title = !this.multiple ? selectedItems[0] : selectedItems.join(this.options.multipleSeparator);
 
-      //If this is multi select, and the selectText type is count, the show 1 of 2 selected etc..
+      // If this is multi-select, and the selectText type is count, then show 1 of 2 selected, etc.
       if (this.multiple && this.options.selectedTextFormat.indexOf('count') > -1) {
         var max = this.options.selectedTextFormat.split('>');
         if ((max.length > 1 && selectedItems.length > max[1]) || (max.length === 1 && selectedItems.length >= 2)) {
@@ -530,12 +531,12 @@
         title = this.options.title;
       }
 
-      //If we dont have a title, then use the default, or if nothing is set at all, use the not selected text
+      // If we dont have a title, then use the default; or if nothing is set at all, use the not selected text
       if (!title) {
         title = typeof this.options.title !== 'undefined' ? this.options.title : this.options.noneSelectedText;
       }
 
-      //strip all html-tags and trim the result
+      // Strip all HTML tags and trim the result
       this.$button.attr('title', $.trim(title.replace(/<[^>]*>?/g, '')));
       this.$button.children('.filter-option').html(title);
     },
@@ -605,7 +606,7 @@
           selectOffsetTop,
           selectOffsetBot,
           posVert = function () {
-            // JQuery defines a scrollTop function, but in pure JS it's a property
+            // jQuery defines a scrollTop function, but in pure JS it's a property
             //noinspection JSValidateTypes
             selectOffsetTop = that.$newElement.offset().top - $window.scrollTop();
             selectOffsetBot = $window.height() - selectOffsetTop - selectHeight;
@@ -801,14 +802,14 @@
             prevValue = that.$element.val(),
             prevIndex = that.$element.prop('selectedIndex');
 
-        // Don't close on multi choice menu
+        // Don't close on multi-select menu
         if (that.multiple) {
           e.stopPropagation();
         }
 
         e.preventDefault();
 
-        //Don't run if we have been disabled
+        // Don't run if we have been disabled
         if (!that.isDisabled() && !$this.parent().hasClass('disabled')) {
           var $options = that.$element.find('option'),
               $option = $options.eq(clickedIndex),
@@ -817,12 +818,12 @@
               maxOptions = that.options.maxOptions,
               maxOptionsGrp = $optgroup.data('maxOptions') || false;
 
-          if (!that.multiple) { // Deselect all others if not multi select box
+          if (!that.multiple) { // Deselect all others if not multi-select box
             $options.prop('selected', false);
             $option.prop('selected', true);
             that.$menu.find('.selected').removeClass('selected');
             that.setSelected(clickedIndex, true);
-          } else { // Toggle the one we have chosen if we are multi select.
+          } else { // Toggle the one we have chosen if we are multi-select
             $option.prop('selected', !state);
             that.setSelected(clickedIndex, !state);
             $this.blur();
@@ -992,7 +993,7 @@
 
           var $lisVisible = that.$lis.not('.hidden');
 
-          // hide divider if first or last visible, or if followed by another divider
+          // Hide divider if first or last visible, or if followed by another divider
           $lisVisible.each(function(index) {
             var $this = $(this);
 
@@ -1038,7 +1039,7 @@
         case 'contains':
           break;
         default:
-          //no need to change the default
+          // No need to change the default
       }
 
       return style;
@@ -1253,7 +1254,7 @@
         $items.eq(keyIndex[count - 1]).focus();
       }
 
-      // Select focused option if "Enter", "Spacebar" or "Tab" (when selectOnTab is true) are pressed inside the menu.
+      // Select focused option if "Enter", "Spacebar" or "Tab" (when selectOnTab is true) is pressed inside the menu
       if ((/(13|32)/.test(e.keyCode.toString(10)) || (/(^9$)/.test(e.keyCode.toString(10)) && that.options.selectOnTab)) && isActive) {
         if (!/(32)/.test(e.keyCode.toString(10))) e.preventDefault();
         if (!that.options.liveSearch) {
@@ -1308,10 +1309,10 @@
   // SELECTPICKER PLUGIN DEFINITION
   // ==============================
   function Plugin(option, event) {
-    // get the args of the outer function..
+    // Get the args of the outer function
     var args = arguments;
-    // The arguments of the function are explicitly re-defined from the argument list, because the shift causes them
-    // to get lost/corrupted in android 2.3 and IE9 #715 #775
+    // The arguments of the function are explicitly re-defined from the argument list,
+    // because the shift causes them to get lost/corrupted in android 2.3 and IE9 #715 #775
     var _option = option,
         _event = event;
     [].shift.apply(args);
