@@ -18,8 +18,8 @@ See a Bootstrap 3 example [here](http://silviomoreto.github.io/bootstrap-select)
 ## Modifications by thdoan
 - Added option for custom arrow icon class
 - Added option for thumbnails in option items
-- Optimized code
 - Removed using option value as title (uses select title by default)
+- Minor code optimizations
 
 ## Usage
 
