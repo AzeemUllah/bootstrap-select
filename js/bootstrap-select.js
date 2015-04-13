@@ -224,7 +224,7 @@
     noneSelectedText: 'Nothing selected',
     noneResultsText: 'No results matched {0}',
     countSelectedText: function (numSelected, numTotal) {
-      return (numSelected === 1) ? "{0} item selected" : "{0} items selected";
+      return (numSelected === 1) ? '{0} item selected' : '{0} items selected';
     },
     maxOptionsText: function (numAll, numGroup) {
       return [
@@ -256,6 +256,7 @@
     actionsBox: false,
     iconBase: 'glyphicon',
     tickIcon: 'glyphicon-ok',
+    caretIcon: 'caret',
     maxOptions: false,
     mobile: false,
     selectOnTab: false,
@@ -335,7 +336,7 @@
             '<div class="btn-group bootstrap-select' + multiple + inputGroup + '">' +
               '<button type="button" class="btn dropdown-toggle" data-toggle="dropdown"' + autofocus + '>' +
                 '<span class="filter-option pull-left"></span>&nbsp;' +
-                '<span class="caret"></span>' +
+                '<span class="' + this.options.caretIcon + '"></span>' +
               '</button>' +
               '<div class="dropdown-menu open">' +
                 header +

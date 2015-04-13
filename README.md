@@ -16,7 +16,7 @@ See a Bootstrap 3 example [here](http://silviomoreto.github.io/bootstrap-select)
 [t0xicCode](https://github.com/t0xicCode).
 
 ## Modifications by thdoan
-- Added option for custom arrow icon class
+- Added option for custom caret icon class
 - Added option for thumbnails in `<option>`
 - Removed using `<option>` value as title (uses `<select>` title by default)
 - Minor code optimizations
@@ -43,6 +43,13 @@ Or
 ```js
 // To style all <select>s
 $('select').selectpicker();
+```
+If you want to use a custom caret icon:
+```js
+// Set custom caret icon
+$('select.selectpicker').selectpicker({
+  caretIcon: 'fa fa-angle-down'
+});
 ```
 
 Checkout the [documentation](http://silviomoreto.github.io/bootstrap-select) for further information.
