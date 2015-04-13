@@ -380,9 +380,9 @@
        */
       var generateLI = function (content, index, classes, optgroup) {
         return '<li' +
-            ((typeof classes !== undefined & classes !== '') ? ' class="' + classes + '"' : '') +
-            ((typeof index !== undefined & index !== null) ? ' data-original-index="' + index + '"' : '') +
-            ((typeof optgroup !== undefined & optgroup !== null) ? ' data-optgroup="' + optgroup + '"' : '') +
+            ((typeof classes !== 'undefined' & classes !== '') ? ' class="' + classes + '"' : '') +
+            ((typeof index !== 'undefined' & index !== null) ? ' data-original-index="' + index + '"' : '') +
+            ((typeof optgroup !== 'undefined' & optgroup !== null) ? ' data-optgroup="' + optgroup + '"' : '') +
             '>' + content + '</li>';
       };
 
@@ -395,11 +395,12 @@
        * @returns {string}
        */
       var generateA = function (text, classes, inline, tokens, multiple) {
+      console.log(text + ' : ' + classes + ' : ' + inline + ' : ' + tokens + ' : ' + multiple);
         return '<a tabindex="0"' +
-            (typeof classes !== undefined ? ' class="' + classes + '"' : '') +
-            (typeof inline !== undefined ? ' style="' + inline + '"' : '') +
+            (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
+            (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
             ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' +
-            (typeof tokens !== undefined || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
+            (typeof tokens !== 'undefined' || tokens !== null ? ' data-tokens="' + tokens + '"' : '') +
             '>' + text +
             (multiple ? '<span class="' + that.options.tickIcon + ' check-mark" aria-hidden="true"></span>' : '') +
             '</a>';

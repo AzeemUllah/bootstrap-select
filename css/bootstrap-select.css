@@ -129,6 +129,9 @@
 .bootstrap-select.btn-group .dropdown-menu li small {
   padding-left: 0.5em;
 }
+.bootstrap-select.btn-group .dropdown-menu li .media {
+  display: inline-block;
+}
 .bootstrap-select.btn-group .dropdown-menu li .media-body {
   vertical-align: middle;
 }
