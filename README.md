@@ -15,7 +15,7 @@ See a Bootstrap 3 example [here](http://silviomoreto.github.io/bootstrap-select)
 [Matt Bryson](https://github.com/mattbryson), and
 [t0xicCode](https://github.com/t0xicCode).
 
-## Modifications by Tom Doan
+## Modifications by thdoan
 - Added option for custom arrow icon class
 - Added option for thumbnails in option items
 - Optimized code
@@ -37,7 +37,7 @@ If you use a 1.6.3 or newer, you don't need to to anything else, as the data-api
 If you use an older version, you need to add the following either at the bottom of the page (after the last selectpicker), or in a [`$(document).ready()`](http://api.jquery.com/ready/) block.
 ```js
 // To style only <select>s with the selectpicker class
-$('.selectpicker').selectpicker();
+$('select.selectpicker').selectpicker();
 ```
 Or
 ```js
