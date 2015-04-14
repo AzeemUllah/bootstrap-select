@@ -395,7 +395,6 @@
        * @returns {string}
        */
       var generateA = function (text, classes, inline, tokens, multiple) {
-      console.log(text + ' : ' + classes + ' : ' + inline + ' : ' + tokens + ' : ' + multiple);
         return '<a tabindex="0"' +
             (typeof classes !== 'undefined' ? ' class="' + classes + '"' : '') +
             (typeof inline !== 'undefined' ? ' style="' + inline + '"' : '') +
