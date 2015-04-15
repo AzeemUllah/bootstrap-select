@@ -134,6 +134,7 @@
 }
 .bootstrap-select.btn-group .dropdown-menu li .media-body {
   vertical-align: middle;
+  white-space: normal;
 }
 .bootstrap-select.btn-group .dropdown-menu .notify {
   position: absolute;
