@@ -755,9 +755,9 @@
         this.$button.addClass('disabled').attr('tabindex', -1);
       } else {
         if (this.$button.hasClass('disabled')) {
-          this.$button.removeClass('disabled');
+          // Also sync <li> disabled state with <select> disabled state
+          this.$button.add(this.$menu.find('li')).removeClass('disabled');
         }
-
         if (this.$button.attr('tabindex')===-1 && !this.$element.data('tabindex')) {
           this.$button.removeAttr('tabindex');
         }
@@ -942,7 +942,7 @@
 
       this.$element.change(function() {
         that.checkDisabled();
-        that.render(this.disabled!==that.$button.hasClass('disabled'));
+        that.render(false);
       });
     },
 
