@@ -941,6 +941,7 @@
       });
 
       this.$element.change(function () {
+        that.checkDisabled();
         that.render(false);
       });
     },
