@@ -887,7 +887,17 @@
 
           // Trigger select 'change'
           if ((prevValue!==that.$element.val() && that.multiple) || (prevIndex!==that.$element.prop('selectedIndex') && !that.multiple)) {
-            that.$element.change();
+            // Support both native addEventListener() and jQuery change()
+            var event;
+            if (typeof Event==='function') {
+              // For modern browsers
+              event = new Event('change');
+            } else {
+              // For IE since it doesn't support Event constructor
+              event = document.createEvent('Event');
+              event.initEvent('change');
+            }
+            that.$element[0].dispatchEvent(event);
           }
         }
       });
