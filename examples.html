@@ -35,16 +35,33 @@ select.selectpicker { display:none; /* Prevent FOUC */}
   <hr>
 
   <h2>Multi-Select</h2>
-  <select title="Colors" class="selectpicker" multiple>
+  <select multiple title="Colors" class="selectpicker">
     <option>Red</option>
     <option>Green</option>
     <option>Blue</option>
   </select>
   <pre>
-&lt;select title="Colors" class="selectpicker" multiple&gt;
+&lt;select multiple title="Colors" class="selectpicker"&gt;
   &lt;option&gt;Red&lt;/option&gt;
   &lt;option&gt;Green&lt;/option&gt;
   &lt;option&gt;Blue&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+  <hr>
+
+  <h2>Select with Option Tooltip</h2>
+  <select class="selectpicker">
+    <option>Select...</option>
+    <option>LEGO&reg; 21103 The DeLorean Time Machine</option>
+    <option>LEGO&reg; 21303 WALL&bull;E</option>
+    <option disabled title="Out of stock">LEGO&reg; 76023 The Tumbler</option>
+  </select>
+  <pre>
+&lt;select class="selectpicker"&gt;
+  &lt;option&gt;Select...&lt;/option&gt;
+  &lt;option&gt;LEGO&amp;reg; 21103 The DeLorean Time Machine&lt;/option&gt;
+  &lt;option&gt;LEGO&amp;reg; 21303 WALL&amp;bull;E&lt;/option&gt;
+  &lt;option disabled title="Out of stock"&gt;LEGO&amp;reg; 76023 The Tumbler&lt;/option&gt;
 &lt;/select&gt;</pre>
 
   <hr>
