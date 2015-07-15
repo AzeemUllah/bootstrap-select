@@ -6,7 +6,7 @@
     <title>Bootstrap-select by thdoan</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -55,9 +55,18 @@
 
 <ul>
 <li>Added option for custom caret icon class</li>
-<li>Added option for thumbnails in <code>&lt;option&gt;</code></li>
+<li>Added option for thumbnails in <code>&lt;option&gt;</code>
+</li>
 <li>Added title for <code>&lt;option&gt;</code> element</li>
-<li>Removed using <code>&lt;option&gt;</code> value as title (uses <code>&lt;select&gt;</code> title by default)</li>
+<li>Added aria-hidden="true" for all icons</li>
+<li>Added logic to sync disabled state on 'change' event</li>
+<li>Changed cursor for optgroup headers to 'default'</li>
+<li>Suppressed checkmark element if not multi-select</li>
+<li>Decoupled iconBase class so you can mix and match</li>
+<li>Removed using <code>&lt;option&gt;</code> value as title (uses <code>&lt;select&gt;</code> title)</li>
+<li>Removed showContent option (add data attribute to show)</li>
+<li>Removed showIcon option (add data attribute to show)</li>
+<li>Removed showSubtext option (add data attribute to show)</li>
 <li>Minor code optimizations</li>
 </ul>
 
