@@ -390,12 +390,14 @@
        * @param text
        * @param [classes]
        * @param [inline]
+       * @param [title]
        * @param [tokens]
        * @param [multiple]
        * @returns {string}
        */
-      var generateA = function(text, classes, inline, tokens, multiple) {
+      var generateA = function(text, classes, inline, title, tokens, multiple) {
         return '<a tabindex="0"' +
+            (typeof title!=='undefined' ? ' title="' + title + '"' : '') +
             (typeof classes!=='undefined' ? ' class="' + classes + '"' : '') +
             (typeof inline!=='undefined' ? ' style="' + inline + '"' : '') +
             ' data-normalized-text="' + normalizeToBase(htmlEscape(text)) + '"' +
@@ -411,6 +413,7 @@
         // Get the class and text for the option
         var optionClass = $this.attr('class') || '',
             inline = $this.attr('style'),
+            title = $this.attr('title'),
             text = $this.data('content') ? $this.data('content') : $this.html(),
             tokens = $this.data('tokens') ? $this.data('tokens') : null,
             subtext = $this.data('subtext') ? '<small class="text-muted">' + $this.data('subtext') + '</small>' : '',
@@ -452,14 +455,14 @@
 
             _li.push(generateLI(label, null, 'dropdown-header', optID));
           }
-          _li.push(generateLI(generateA(text, 'opt ' + optionClass, inline, tokens, that.multiple), index, '', optID));
+          _li.push(generateLI(generateA(text, 'opt ' + optionClass, inline, title, tokens, that.multiple), index, '', optID));
         } else if ($this.data('divider')===true) {
           _li.push(generateLI('', index, 'divider'));
         } else if ($this.data('hidden')===true) {
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens, that.multiple), index, 'hidden is-hidden'));
+          _li.push(generateLI(generateA(text, optionClass, inline, title, tokens, that.multiple), index, 'hidden is-hidden'));
         } else {
           if ($this.prev().is('optgroup')) _li.push(generateLI('', null, 'divider', optID + 'div'));
-          _li.push(generateLI(generateA(text, optionClass, inline, tokens, that.multiple), index));
+          _li.push(generateLI(generateA(text, optionClass, inline, title, tokens, that.multiple), index));
         }
       });
 

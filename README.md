@@ -19,6 +19,7 @@ See Bootstrap 3 examples [here](http://thdoan.github.io/bootstrap-select/example
 
 - Added option for custom caret icon class
 - Added option for thumbnails in `<option>`
+- Added title for `<option>` element
 - Added aria-hidden="true" for all icons
 - Added logic to sync disabled state on 'change' event
 - Changed cursor for optgroup headers to 'default'
