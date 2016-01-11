@@ -894,11 +894,13 @@
             var event;
             if (typeof Event==='function') {
               // For modern browsers
-              event = new Event('change');
+              event = new Event('change', {
+                'bubbles': true
+              });
             } else {
               // For IE since it doesn't support Event constructor
               event = document.createEvent('Event');
-              event.initEvent('change');
+              event.initEvent('change', true, false);
             }
             that.$element[0].dispatchEvent(event);
           }
@@ -1235,7 +1237,7 @@
 
       } else if (!$this.is('input')) {
         var keyIndex = [],
-            count,
+            count = $(document).data('keycount') + 1,
             prevKey;
 
         $items.each(function() {
@@ -1246,10 +1248,7 @@
           }
         });
 
-        count = $(document).data('keycount');
-        count++;
         $(document).data('keycount', count);
-
         prevKey = $.trim($(':focus').text().toLowerCase()).substring(0, 1);
 
         if (prevKey!==keyCodeMap[e.keyCode]) {
