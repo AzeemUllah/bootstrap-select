@@ -9,18 +9,16 @@
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="https://cdn.rawgit.com/aFarkas/html5shiv/master/dist/html5shiv.min.js"></script>
     <![endif]-->
   </head>
   <body>
+
     <div class="wrapper">
       <header>
         <h1>Bootstrap-select</h1>
         <p>A custom select for @twitter bootstrap using button dropdown (originally by Silvio Moreto)</p>
-
         <p class="view"><a href="https://github.com/thdoan/bootstrap-select">View the Project on GitHub <small>thdoan/bootstrap-select</small></a></p>
-
-
         <ul>
           <li><a href="https://github.com/thdoan/bootstrap-select/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/thdoan/bootstrap-select/tarball/master">Download <strong>TAR Ball</strong></a></li>
@@ -28,86 +26,88 @@
         </ul>
       </header>
       <section>
-        <h1>
-<a id="bootstrap-select" class="anchor" href="#bootstrap-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>bootstrap-select</h1>
+
+<h1><a id="bootstrap-select" class="anchor" href="#bootstrap-select" aria-hidden="true"><span class="octicon octicon-link"></span></a>bootstrap-select</h1>
 
 <p>A custom select/multiselect for Bootstrap using button dropdown, designed to behave like regular Bootstrap selects.</p>
 
-<h2>
-<a id="demo-and-documentation" class="anchor" href="#demo-and-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo and Documentation</h2>
+<h2><a id="demo-and-documentation" class="anchor" href="#demo-and-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo and Documentation</h2>
 
-<p>See Bootstrap 3 examples <a href="http://thdoan.github.io/bootstrap-select/examples.html">here</a> and <a href="http://silviomoreto.github.io/bootstrap-select">here</a>.</p>
+<p>See Bootstrap 3 examples <a href="https://thdoan.github.io/bootstrap-select/examples.html">here</a> and <a href="http://silviomoreto.github.io/bootstrap-select/">here</a>.</p>
 
-<h2>
-<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
+<h2><a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
 
 <ul>
-<li><a href="https://github.com/silviomoreto">Silvio Moreto</a></li>
-<li><a href="https://github.com/anacarolinats">Ana Carolina</a></li>
-<li><a href="https://github.com/caseyjhol">caseyjhol</a></li>
-<li><a href="https://github.com/mattbryson">Matt Bryson</a></li>
-<li><a href="https://github.com/t0xicCode">t0xicCode</a></li>
+  <li><a href="https://github.com/silviomoreto">Silvio Moreto</a></li>
+  <li><a href="https://github.com/anacarolinats">Ana Carolina</a></li>
+  <li><a href="https://github.com/caseyjhol">caseyjhol</a></li>
+  <li><a href="https://github.com/mattbryson">Matt Bryson</a></li>
+  <li><a href="https://github.com/t0xicCode">t0xicCode</a></li>
 </ul>
 
-<h2>
-<a id="modifications-by-thdoan" class="anchor" href="#modifications-by-thdoan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modifications by <a href="https://github.com/thdoan">thdoan</a>
-</h2>
+<h2><a id="modifications-by-thdoan" class="anchor" href="#modifications-by-thdoan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Modifications by <a href="https://github.com/thdoan">thdoan</a></h2>
 
 <ul>
-<li>Added option for custom caret icon class</li>
-<li>Added option for thumbnails in <code>&lt;option&gt;</code>
-</li>
-<li>Added title for <code>&lt;option&gt;</code> element</li>
-<li>Added aria-hidden="true" for all icons</li>
-<li>Added logic to sync disabled state on 'change' event</li>
-<li>Changed cursor for optgroup headers to 'default'</li>
-<li>Suppressed checkmark element if not multi-select</li>
-<li>Decoupled iconBase class so you can mix and match</li>
-<li>Removed using <code>&lt;option&gt;</code> value as title (uses <code>&lt;select&gt;</code> title)</li>
-<li>Removed showContent option (add data attribute to show)</li>
-<li>Removed showIcon option (add data attribute to show)</li>
-<li>Removed showSubtext option (add data attribute to show)</li>
-<li>Minor code optimizations</li>
+  <li>Added option for custom caret icon class</li>
+  <li>Added option for thumbnails in <code>&lt;option&gt;</code></li>
+  <li>Added title for <code>&lt;option&gt;</code> element</li>
+  <li>Added aria-hidden="true" for all icons</li>
+  <li>Added logic to sync disabled state on 'change' event</li>
+  <li>Changed cursor for optgroup headers to 'default'</li>
+  <li>Suppressed checkmark element if not multi-select</li>
+  <li>Decoupled iconBase class so you can mix and match</li>
+  <li>Removed using <code>&lt;option&gt;</code> value as title (uses <code>&lt;select&gt;</code> title)</li>
+  <li>Removed showContent option (add data attribute to show)</li>
+  <li>Removed showIcon option (add data attribute to show)</li>
+  <li>Removed showSubtext option (add data attribute to show)</li>
+  <li>Minor code optimizations</li>
 </ul>
 
-<h2>
-<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+<h2><a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
 <p>Create your <code>&lt;select&gt;</code> with the <code>.selectpicker</code> class.</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">select</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>selectpicker<span class="pl-pds">"</span></span>&gt;
+<div class="highlight highlight-html">
+  <pre>&lt;<span class="pl-ent">select</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>selectpicker<span class="pl-pds">"</span></span>&gt;
   &lt;<span class="pl-ent">option</span>&gt;Mustard&lt;/<span class="pl-ent">option</span>&gt;
   &lt;<span class="pl-ent">option</span>&gt;Ketchup&lt;/<span class="pl-ent">option</span>&gt;
   &lt;<span class="pl-ent">option</span>&gt;Barbecue&lt;/<span class="pl-ent">option</span>&gt;
-&lt;/<span class="pl-ent">select</span>&gt;</pre></div>
+&lt;/<span class="pl-ent">select</span>&gt;</pre>
+</div>
 
 <p>If you use a 1.6.3 or newer, you don't need to to anything else, as the data-api automatically picks up the <code>&lt;select&gt;</code>s with the <code>selectpicker</code> class.</p>
 
 <p>If you use an older version, you need to add the following either at the bottom of the page (after the last selectpicker), or in a <a href="http://api.jquery.com/ready/"><code>$(document).ready()</code></a> block.</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-c">// To style only &lt;select&gt;s with the selectpicker class</span>
-$(<span class="pl-s"><span class="pl-pds">'</span>select.selectpicker<span class="pl-pds">'</span></span>).selectpicker();</pre></div>
+<div class="highlight highlight-js">
+  <pre><span class="pl-c">// To style only &lt;select&gt;s with the selectpicker class</span>
+$(<span class="pl-s"><span class="pl-pds">'</span>select.selectpicker<span class="pl-pds">'</span></span>).selectpicker();</pre>
+</div>
 
 <p>Or</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-c">// To style all &lt;select&gt;s</span>
-$(<span class="pl-s"><span class="pl-pds">'</span>select<span class="pl-pds">'</span></span>).selectpicker();</pre></div>
+<div class="highlight highlight-js">
+  <pre><span class="pl-c">// To style all &lt;select&gt;s</span>
+$(<span class="pl-s"><span class="pl-pds">'</span>select<span class="pl-pds">'</span></span>).selectpicker();</pre>
+</div>
 
 <p>If you want to use a custom caret icon:</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-c">// Set custom caret icon</span>
+<div class="highlight highlight-js">
+  <pre><span class="pl-c">// Set custom caret icon</span>
 $(<span class="pl-s"><span class="pl-pds">'</span>select.selectpicker<span class="pl-pds">'</span></span>).selectpicker({
   caretIcon<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>fa fa-angle-down<span class="pl-pds">'</span></span>
-});</pre></div>
+});</pre>
+</div>
 
-<p>Check out the <a href="http://silviomoreto.github.io/bootstrap-select">documentation</a> for further information.</p>
+<p>Check out the <a href="http://silviomoreto.github.io/bootstrap-select/">documentation</a> for further information.</p>
 
-<h2>
-<a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and License</h2>
+<h2><a id="copyright-and-license" class="anchor" href="#copyright-and-license" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright and License</h2>
 
 <p>Copyright (C) 2013-2015 bootstrap-select</p>
 
 <p>Licensed under <a href="LICENSE">the MIT license</a>.</p>
+
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/thdoan">thdoan</a></p>
@@ -115,16 +115,16 @@ $(<span class="pl-s"><span class="pl-pds">'</span>select.selectpicker<span class
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-2843793-6");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script>
+    var gaJsHost = (('https:'===document.location.protocol) ? 'https://ssl.' : 'http://www.');
+    document.write(unescape('%3Cscript src="' + gaJsHost + 'google-analytics.com/ga.js"%3E%3C/script%3E'));
+    </script>
+    <script>
+    try {
+      var pageTracker = _gat._getTracker('UA-2843793-6');
+      pageTracker._trackPageview();
+    } catch(err) {}
+    </script>
 
   </body>
 </html>
